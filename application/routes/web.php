@@ -1,4 +1,11 @@
 <?php
+function sha_url(string $path) {
+	$x = null;
+	for ($i=0; $i < 5; $i++) { 
+		$x .= hash('ripemd160', $path.date( "Y-m-d", strtotime("now")));
+	}
+	return $x;
+}
 
 Route::get('/', function(){
     redirect('/login');
@@ -26,9 +33,10 @@ Route::group('master',['namespace' => 'master','middleware' => ['SimpleAuthMiddl
 		Route::match(['GET', 'POST'],'/{id}/'.hash("gost", 'edit'),'ProductController@edit')->name('product.edit');
 		Route::get(hash("sha256", 'product'),'ProductController@grid')->name('product.grid');
 	});
-});
-
-Route::group('transaction',['namespace' => 'transaction','middleware' => ['SimpleAuthMiddleware']],function(){
+	Route::group(sha_url('user'), function(){
+		Route::resource('user','UserController');
+		Route::get('grid','UserController@grid')->name('user.grid');
+	});
 	Route::group('order', function()
 	{
 		Route::get('/','OrderController@index')->name('order');
@@ -36,7 +44,14 @@ Route::group('transaction',['namespace' => 'transaction','middleware' => ['Simpl
 		Route::match(['GET', 'POST'],'/{id}/'.hash("gost", 'edit'),'OrderController@edit')->name('order.take');
 		Route::get(hash("sha256", 'datatables'),'OrderController@grid')->name('order.grid');
 	});
+});
 
+Route::group('transaction',['namespace' => 'transaction','middleware' => ['SimpleAuthMiddleware']],function(){
+		Route::resource('take_order','TakeOrderController');	
+		// Route::get('/','OrderController@index')->name('take_order');
+		// Route::match(['GET', 'POST'],'/'.hash("gost", 'create'),'OrderController@create')->name('take_order.create');
+		// Route::match(['GET', 'POST'],'/{id}/'.hash("gost", 'edit'),'OrderController@edit')->name('take_order.take');
+		// Route::get(hash("sha256", 'datatables'),'OrderController@grid')->name('take_order.grid');
 });
 
 Route::set('404_override', function(){

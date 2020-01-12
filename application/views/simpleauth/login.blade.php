@@ -1,10 +1,13 @@
 @extends('template.layouts.empty', ['paceTop' => true])
 
 @section('title', 'Login Page')
-
+@php
+	$num = "assets/img/login-bg/login-bg-".rand(1,17).".jpg";
+@endphp
 @section('content')
+
 	<div class="login-cover">
-	    <div class="login-cover-image" style="background-image: url({{base_url('assets/img/login-bg/login-bg-18.jpg')}})" data-id="login-cover-image"></div>
+	    <div class="login-cover-image" style="background-image: url({{base_url($num)}})" data-id="login-cover-image"></div>
 	    <div class="login-cover-bg"></div>
 	</div>
 	<!-- begin login -->
@@ -12,8 +15,8 @@
 		<!-- begin brand -->
 		<div class="login-header">
 			<div class="brand">
-				<span class="logo"></span> <b>PoS</b> aWs
-				<small>silahkan login untuk memulai aplikasi</small>
+			<span class="logo"></span> <b>{{env('APP_NAME')}}</b>
+			<small class="f-w-700">{{env('APP_COMPANY')}}</small>
 			</div>
 			<div class="icon">
 				<i class="fa fa-lock"></i>
@@ -53,7 +56,7 @@
 				</div>
 				@endif
 				<div class="login-buttons">
-					<button type="submit" class="btn btn-success btn-block btn-lg">Biarkan saya masuk Mah,</button>
+					<button type="submit" class="btn btn-success btn-block btn-lg">Login,</button>
 				</div>
 				<div class="m-t-20">
 					Not a member yet? Click <a href="javascript:;">here</a> to register.

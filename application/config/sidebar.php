@@ -4,7 +4,7 @@ $config['sidebar'] = [
 		[
 			'icon' => 'fa fa-home',
 			'title' => 'Home',
-			'url' => base_url(),
+			'url' => route('homepage'),
 		],
 	    [
 			'icon' => 'fa fa-th-large',
@@ -12,15 +12,23 @@ $config['sidebar'] = [
 			'url' => 'javascript:;',
 			'caret' => true,
 			'sub_menu' => [[
-				'url' => '/master/customer',
+				'url' => route('master.customer'),
 				'title' => 'Customer'
 			],[
-				'url' => '/master/courier',
+				'url' => route('master.courier'),
 				'title' => 'Courier'
 			],
 			[
-				'url' => '/master/product',
+				'url' => route('product'),
 				'title' => 'Produk'
+			],
+			[
+				'url' => route('order'),
+				'title' => 'Order'
+			],
+			[
+				'url' => route('user.index'),
+				'title' => 'User'
 			]]
 		],
 		[
@@ -29,7 +37,7 @@ $config['sidebar'] = [
 			'url' => 'javascript:;',
 			'caret' => true,
 			'sub_menu' => [[
-				'url' => 'transaction/order',
+				'url' => route('take_order.index'),
 				'title' => 'Take Order'
 			]]
 		]

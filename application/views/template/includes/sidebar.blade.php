@@ -1,5 +1,6 @@
 @php
 	$sidebarClass = (!empty($sidebarTransparent)) ? 'sidebar-transparent' : '';
+	$user_email = $_SESSION['tracking_auth']['user']['username'];
 @endphp
 <!-- begin #sidebar -->
 <div id="sidebar" class="sidebar {{ $sidebarClass }}">
@@ -11,12 +12,12 @@
 				<a href="javascript:;" data-toggle="nav-profile">
 					<div class="cover with-shadow"></div>
 					<div class="image">
-						<img src="/assets/img/user/user-13.jpg" alt="" />
+						<img src="{{base_url('/assets/img/user/user2.png')}}" alt="" />
 					</div>
 					<div class="info">
 						<b class="caret pull-right"></b>
-						Sean Ngu
-						<small>Front end developer</small>
+						{{$user_email}}
+						<small>{{env('COMPANY_NAME')}}</small>
 					</div>
 				</a>
 			</li>
@@ -35,7 +36,7 @@
 			@php
 				ci()->config->load('sidebar');
 				$menu_data = ci()->config->config['sidebar'];
-				$currentUrl = uri_string();
+				$currentUrl = base_url(uri_string());
 				function renderSubMenu($value, $currentUrl) {
 					$subMenu = '';
 					$GLOBALS['sub_level'] += 1 ;
@@ -68,7 +69,7 @@
 						// dump(base_url($menu['url']));
 						$subMenu .= '
 							<li class="'. $hasSub .' '. $active .'">
-								<a href="'. base_url($menu['url']) .'">'. $hasCaret . $hasTitle . $hasHighlight .'</a>
+								<a href="'.$menu['url'].'">'. $hasCaret . $hasTitle . $hasHighlight .'</a>
 								'. $subSubMenu .'
 							</li>
 						';
@@ -122,3 +123,4 @@
 <div class="sidebar-bg"></div>
 <!-- end #sidebar -->
 
+{{-- @dump(get_defined_vars()) --}}
