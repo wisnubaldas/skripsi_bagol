@@ -47,7 +47,8 @@ Route::group('master',['namespace' => 'master','middleware' => ['SimpleAuthMiddl
 });
 
 Route::group('transaction',['namespace' => 'transaction','middleware' => ['SimpleAuthMiddleware']],function(){
-		Route::resource('take_order','TakeOrderController');	
+		Route::resource('take_order','TakeOrderController');
+		Route::get('order_list','TakeOrderController@grid_order')->name('grid_order');	
 		// Route::get('/','OrderController@index')->name('take_order');
 		// Route::match(['GET', 'POST'],'/'.hash("gost", 'create'),'OrderController@create')->name('take_order.create');
 		// Route::match(['GET', 'POST'],'/{id}/'.hash("gost", 'edit'),'OrderController@edit')->name('take_order.take');

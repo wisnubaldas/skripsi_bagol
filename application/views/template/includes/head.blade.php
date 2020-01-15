@@ -15,6 +15,7 @@
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="{{base_url('assets/plugins/pace/pace.min.js')}}"></script>
+<script src="{{base_url('assets/my_apps/template.js')}}"></script>
 <!-- ================== END BASE JS ================== -->
 
 @stack('css')

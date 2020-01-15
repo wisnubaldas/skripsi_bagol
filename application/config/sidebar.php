@@ -33,13 +33,23 @@ $config['sidebar'] = [
 		],
 		[
 			'icon' => 'fa fa-gift',
-			'title' => 'Delivery',
+			'title' => 'Logistic',
 			'url' => 'javascript:;',
 			'caret' => true,
-			'sub_menu' => [[
-				'url' => route('take_order.index'),
-				'title' => 'Take Order'
-			]]
+			'sub_menu' => [
+								[
+									'url' => '#',
+									'title' => 'Pickup'
+								],
+								[
+									'url' => route('take_order.index'),
+									'title' => 'Take Order'
+								],
+								[
+									'url' => '#',
+									'title' => 'Delivery'
+								],
+			]
 		]
 	]
 ];
