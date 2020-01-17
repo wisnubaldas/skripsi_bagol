@@ -17,5 +17,8 @@
 <script src="{{base_url('assets/plugins/pace/pace.min.js')}}"></script>
 <script src="{{base_url('assets/my_apps/template.js')}}"></script>
 <!-- ================== END BASE JS ================== -->
-
+<link href="{{base_url('/assets/plugins/datatables/css/dataTables.bootstrap4.css')}}" rel="stylesheet" />
+<link href="{{base_url('/assets/plugins/datatables/css/buttons/buttons.bootstrap4.min.css')}}" rel="stylesheet" />
+<link href="{{base_url('/assets/plugins/datatables/css/responsive/responsive.bootstrap4.css')}}" rel="stylesheet" />
+<link href="{{base_url('/assets/plugins/select2/dist/css/select2.min.css')}}" rel="stylesheet" />
 @stack('css')

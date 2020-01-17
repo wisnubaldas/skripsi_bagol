@@ -10,6 +10,7 @@ class Orders extends Model {
                         'delivery_street_address', 'delivery_city', 'delivery_postcode', 'delivery_state', 
                         'delivery_phone', 'billing_name', 'billing_company', 'billing_street_address', 'payment_method', 
                         'latitude', 'longitude','status'];
+                        
     public function __construct()
     {
         parent::__construct();

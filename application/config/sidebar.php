@@ -38,7 +38,7 @@ $config['sidebar'] = [
 			'caret' => true,
 			'sub_menu' => [
 								[
-									'url' => '#',
+									'url' => route('pickup.index'),
 									'title' => 'Pickup'
 								],
 								[

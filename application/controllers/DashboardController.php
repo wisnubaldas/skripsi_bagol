@@ -37,7 +37,7 @@ class DashboardController extends CI_Controller {
 							[
 								'position' => $v->latitude.', '.$v->longitude,
 								'icon' => 'http://maps.google.com/mapfiles/kml/pal4/icon54.png',
-								'onclick'=>'alert("dsdasdasdsa")'
+								'onclick'=>'ShowPickupBaloon("'.$v->id.'")'
 							]
 						);
 					break;

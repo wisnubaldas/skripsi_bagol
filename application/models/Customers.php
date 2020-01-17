@@ -9,7 +9,12 @@ class Customers extends Model{
         public $timestamps = false;
         public function __construct()
 	{
-		parent::__construct();
+                parent::__construct();
+                // $this->load->model('Orders');
+        }
+        public function order()
+        {
+                return $this->hasMany('Orders');
         }
 }
 

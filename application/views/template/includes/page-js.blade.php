@@ -15,7 +15,11 @@
 {{-- <script src="{{base_url('assets/js/bundle.js')}}"></script> --}}
 <script src="{{base_url('assets/js/theme/default.js')}}"></script>
 <script src="{{base_url('assets/js/apps.min.js')}}"></script>
-
+<script src="{{base_url('/assets/plugins/datatables/js/jquery.dataTables.js')}}"></script>
+<script src="{{base_url('/assets/plugins/datatables/js/dataTables.bootstrap4.js')}}"></script>
+<script src="{{base_url('/assets/plugins/datatables/js/buttons/dataTables.buttons.min.js')}}"></script>
+<script src="{{base_url('/assets/plugins/datatables/js/buttons/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{base_url('/assets/plugins/select2/dist/js/select2.min.js')}}"></script>
 <script>
 	$(document).ready(function() {
 		App.init();
