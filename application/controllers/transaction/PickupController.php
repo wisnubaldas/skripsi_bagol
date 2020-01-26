@@ -19,13 +19,13 @@ class PickupController extends CI_Controller {
     public function index()
     {
         $customer = new Customers;
-        $data['customer'] = $customer->select(['id','firstname','lastname'])
+        $data['customer'] = $customer->select(['id','company'])
                 ->withCount(['order'=>function($q){
                     return $q->where('status','=',null);
                 }])
                 ->get()
                 ->map(function($data){
-                    return ['id'=>$data->id,'text'=>$data->firstname.' '.$data->lastname];
+                    return ['id'=>$data->id,'text'=>$data->company];
                 });
         return $this->blade_view->render('shops.pickup.index',$data);
     }

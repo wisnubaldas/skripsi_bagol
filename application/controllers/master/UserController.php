@@ -23,13 +23,16 @@ class UserController extends CI_Controller {
     public function store()
     {
         try {
-            $this->simple_auth->createUser(
-                $this->input->post() 
-            );
-            $this->session->set_flashdata('msg', 'Sukses insert data user');
+            $user_data = $this->input->post();
+            $x = array_merge($user_data,['password'=> hash('ripemd160',$user_data['password'])]);
+            Users::insert($x);
+            $this->session->set_flashdata('msg', ['Sukses insert data user',implode(';',$user_data)]);
             redirect(route('user.index'));
         } catch (\Throwable $th) {
-            return show_error('error insert data',500);
+            $this->session->set_flashdata('msg', ['Gagal Insert Data....<br>',$th->getMessage()]);
+            redirect(route('user.index'));
+            // dump($th->getMessage());
+            // return show_error('error insert data',500);
         }
         
     }

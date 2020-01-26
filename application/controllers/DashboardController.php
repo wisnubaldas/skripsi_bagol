@@ -5,6 +5,8 @@ class DashboardController extends CI_Controller {
 
 	public function __construct()
 	{
+		
+		
 		parent::__construct();
 		$this->load->library('googlemaps');
 		$this->load->model('Orders');
@@ -22,6 +24,7 @@ class DashboardController extends CI_Controller {
 		$this->googlemaps->center = '-6.21462, 106.84513';
 		$this->googlemaps->directions = true;
 		$this->googlemaps->minifyJS = true;
+		$this->googlemaps->zoom = 11;
 		foreach ($lat_long as $v) {
 			switch ($v->status) {
 				case 'delivery':

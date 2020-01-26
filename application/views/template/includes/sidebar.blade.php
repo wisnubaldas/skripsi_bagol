@@ -1,6 +1,6 @@
 @php
 	$sidebarClass = (!empty($sidebarTransparent)) ? 'sidebar-transparent' : '';
-	$user_email = $_SESSION['tracking_auth']['user']['username'];
+	$user_email = ci()->session->userdata('user')['email'];
 @endphp
 <!-- begin #sidebar -->
 <div id="sidebar" class="sidebar {{ $sidebarClass }}">

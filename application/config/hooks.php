@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $hook = Luthier\Hook::getHooks([
-    'modules' => [ 'auth' , 'debug' ]
+    'modules' => ['debug','middleware' ]
 ]);
 
 $hook['pre_system'][] = function(){

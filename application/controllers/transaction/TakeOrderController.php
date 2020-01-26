@@ -18,7 +18,7 @@ class TakeOrderController extends CI_Controller {
   {
     $order = new Orders;
     $or = $order->select(['invoice_number','created_at','billing_name'])
-          ->where('status','=',null)->get();
+          ->where('status','=','pickup')->get();
     $data['invoice'] = $or->map(function($d){
             return $d->invoice_number;
           })->toArray();
@@ -46,7 +46,7 @@ class TakeOrderController extends CI_Controller {
     $order = new Orders;
     $ss = $order->select(['id','invoice_number','delivery_name','delivery_street_address'])
           ->where($data)
-          ->where('status','=',null)->get();
+          ->where('status','=','pickup')->get();
 
     $this->output
                 ->set_content_type('application/json')
@@ -56,6 +56,14 @@ class TakeOrderController extends CI_Controller {
   {
    
   }
+  public function create_delivery()
+  {
+      Orders::where('id','=',$this->input->get('id'))->update(['status'=>'delivery']);
+      $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode(['id'=>$this->input->get('id')]));
+  }
+
 }
 
 /* End of file OrderController.php */

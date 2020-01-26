@@ -21,11 +21,10 @@
             <div class="note-icon"><i class="fa fa-lightbulb"></i></div>
             <div class="note-content text-right">
                 <h4>
-                    <b>{{$alert}}</b>
+                    <b>{{$alert[0]}}</b>
                 </h4>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Maecenas id gravida libero. Etiam semper id sem a ultricies.
+                    {{$alert[1]}}
                 </p>
             </div>
         </div>

@@ -12,7 +12,6 @@
     },
     "require": {
         "php": ">=5.3.7",
-        "luthier/luthier": "^1.0",
         "illuminate/database": "5.7.*",
         "illuminate/events": "5.7.*",
         "illuminate/container": "5.7.*",
@@ -31,7 +30,9 @@
         "filp/whoops": "^2.3",
         "vlucas/phpdotenv": "^3.6",
         "mbezhanov/faker-provider-collection": "^1.2",
-        "ozdemir/datatables": "^2.2"
+        "ozdemir/datatables": "^2.2",
+        "luthier/luthier": "^1.0",
+        "insolita/fakerprovider": "^1.0"
     },
     "suggest": {
         "paragonie/random_compat": "Provides better randomness in PHP 5.x"

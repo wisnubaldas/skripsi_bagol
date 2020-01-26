@@ -11,12 +11,12 @@ if(ci()->session->flashdata('msg')){
 	<!-- begin breadcrumb -->
 	<ol class="breadcrumb pull-right">
 		<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-		<li class="breadcrumb-item"><a href="javascript:;">Page Options</a></li>
-		<li class="breadcrumb-item active">Blank Page</li>
+		<li class="breadcrumb-item"><a href="javascript:;">Master</a></li>
+		<li class="breadcrumb-item active">Create Order</li>
 	</ol>
 	<!-- end breadcrumb -->
 	<!-- begin page-header -->
-	<h1 class="page-header">Blank Page <small>header small text goes here...</small></h1>
+	<h1 class="page-header">Create Order <small></small></h1>
 	<!-- end page-header -->
 	
 	<!-- begin panel -->
@@ -35,22 +35,111 @@ if(ci()->session->flashdata('msg')){
                 </div>
             </div>
         @endif
+        
 		<div class="panel-body">
-            <form action="{{route('master.courier.create')}}" method="POST">
-                <fieldset>
+            
+            <form action="{{route('order.create')}}" method="POST">
+                <fieldset class="note note-secondary note-warning">
                     <div class="row">
-                        @for ($i = 0; $i < count($formInput); $i++)
-                            <div class="col-4">
-                                <div class="form-group">
-                                <label for="{{$formInput[$i]}}">{{ucfirst($formInput[$i])}}</label>
-                                    <input type="text" name="{{$formInput[$i]}}" class="form-control" />
+                        <div class="col-3">
+                            <div class="form-group">
+                            <label for="">Invoice Number</label>
+                                <input type="text" name="invoice_number" class="form-control f-s-17 f-w-400 text-black-darker" value="{{create_invoice(strtotime('now'))}}" readonly/>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                            <label for="">Customer Company</label>
+                            <select class="form-control text-black-darker" name="customers_id" data-size="10" data-live-search="true" data-style="btn-success text-white">
+                                    <option value="" selected >:: Select Customer ::</option>
+                                    @foreach ($customer as $i)
+                                        <option value="{{$i['id']}}">{{$i['company']}}</option>
+                                    @endforeach
+                            </select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                            <label for="">Name</label>
+                                <input type="text" name="delivery_name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                            <label for="">Company</label>
+                                <input type="text" name="delivery_company" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                            <label for="">Alamat</label>
+                                <input type="text" name="delivery_street_address" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                            <label for="">Kota</label>
+                                <input type="text" name="delivery_city" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                            <label for="">Kode POS</label>
+                                <input type="text" name="delivery_postcode" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                            <label for="">Phone</label>
+                                <input type="text" name="delivery_phone" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                    
+                <fieldset class="note note-purple">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                            <label for="">Billing Name</label>
+                                <input type="text" name="billing_name" class="form-control " />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                            <label for="">Billing Company</label>
+                                <input type="text" name="billing_company" class="form-control " />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                            <label for="">Billing Address</label>
+                                <input type="text" name="billing_street_address" class="form-control " />
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group row m-b-10">
+                                <label class="col-form-label">Payment Type</label>
+                                <div class="col-md-9">
+                                    <div class="radio radio-css radio-inline">
+                                        <input type="radio" name="payment_method" id="inlineCssRadio1" value="cash" checked />
+                                        <label for="inlineCssRadio1">Cash</label>
+                                    </div>
+                                    <div class="radio radio-css radio-inline">
+                                        <input type="radio" name="payment_method" id="inlineCssRadio2" value="debit" />
+                                        <label for="inlineCssRadio2">Debit</label>
+                                    </div>
+                                    <div class="radio radio-css radio-inline">
+                                        <input type="radio" name="payment_method" id="inlineCssRadio3" value="credit" />
+                                        <label for="inlineCssRadio3">Credit</label>
+                                    </div>
                                 </div>
                             </div>
-                        @endfor
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-sm btn-primary m-r-5">Save</button>
-                    <a href="{{route('master.courier')}}" class="btn btn-sm btn-default">Cancel</a>
                 </fieldset>
+                {{-- <a href="{{route('master.courier')}}" class="btn btn-sm btn-default">Cancel</a> --}}
+                <button type="submit" class="btn btn-sm btn-primary m-r-5">Save</button>
             </form>
 		</div>
 	</div>
@@ -58,9 +147,19 @@ if(ci()->session->flashdata('msg')){
 @endsection
 
 @push('css')
+<link href="{{base_url('assets/plugins/bootstrap-select/dist/css/bootstrap-select.min.css')}}" rel="stylesheet" />
+<link href="{{base_url('assets/plugins/select2/dist/css/select2.min.css')}}" rel="stylesheet" />
 
 @endpush
 
 @push('scripts')
-	
+<script src="{{base_url('assets/plugins/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>
+<script src="{{base_url('assets/plugins/select2/dist/js/select2.min.js')}}"></script>
+<script>
+jQuery(function(){
+    $('select').select2()
+    // $(".selectpicker").selectpicker("render")
+})
+</script>
+    
 @endpush

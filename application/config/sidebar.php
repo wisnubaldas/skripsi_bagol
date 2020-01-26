@@ -46,10 +46,16 @@ $config['sidebar'] = [
 									'title' => 'Take Order'
 								],
 								[
-									'url' => '#',
-									'title' => 'Delivery'
+									'url' => route('complete.index'),
+									'title' => 'Delivery Complete'
 								],
 			]
-		]
+		],
+		[
+			'icon' => 'fa fa-gift',
+			'title' => 'Report',
+			'url' => route('report.index'),
+			'caret' => false,
+		],
 	]
 ];

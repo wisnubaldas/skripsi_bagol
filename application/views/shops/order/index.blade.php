@@ -24,7 +24,21 @@
 	
 	<!-- begin panel -->
 	<div class="panel panel-primary">
-
+		@if ($alert)
+        <div class="note note-warning note-with-right-icon m-b-15" id="alert-update">
+            <div class="note-icon"><i class="fa fa-lightbulb"></i></div>
+            <div class="note-content text-right">
+                <h4>
+                    <b>200</b>
+				</h4>
+				<dl>
+					@foreach ($alert as $item)
+						{{$item}},
+					@endforeach
+				</dl>
+            </div>
+        </div>
+    	@endif
 		<div class="panel-body">
 			<table id="data-table-combine" class="table table-striped table-bordered">
 				<thead>
@@ -44,6 +58,7 @@
 					<th scope="col">Payment Method</th>
 					<th scope="col">Latitude</th>
 					<th scope="col">Longtidue</th>
+					<th scope="col">Status</th>
 					<th scope="col">Action</th>
 				  </tr>
 				</thead>
@@ -65,6 +80,8 @@
 	<link href="{{base_url('/assets/plugins/datatables/css/rowReorder/rowReorder.bootstrap4.css')}}" rel="stylesheet" />
 	<link href="{{base_url('/assets/plugins/datatables/css/responsive/responsive.bootstrap4.css')}}" rel="stylesheet" />
 	<link href="{{base_url('/assets/plugins/datatables/css/select/select.bootstrap4.css')}}" rel="stylesheet" />
+	<link href="{{base_url('/assets/plugins/datatables/css/buttons/buttons.bootstrap4.min.css')}}" rel="stylesheet" />
+
 @endpush
 
 @push('scripts')
@@ -77,6 +94,8 @@
 	<script src="{{base_url('/assets/plugins/datatables/js/colReorder/dataTables.colReorder.js')}}"></script>
 	<script src="{{base_url('/assets/plugins/datatables/js/responsive/dataTables.responsive.js')}}"></script>
 	<script src="{{base_url('/assets/plugins/datatables/js/responsive/responsive.bootstrap4.js')}}"></script>
+	<script src="{{base_url('/assets/plugins/datatables/js/buttons/dataTables.buttons.min.js')}}"></script>
+	<script src="{{base_url('/assets/plugins/datatables/js/buttons/buttons.bootstrap4.min.js')}}"></script>
 	<script>
 		const g = "{{route('order.grid')}}"
 		$(document).ready(function() {
@@ -85,14 +104,19 @@
 				serverSide: true,
 				ajax: g,
 				responsive: true,
-				// autoFill: true,
-				// colReorder: true,
-				// keys: true,
-				// rowReorder: true,
-				select: true
+				dom: 'Bfrtip',
+				buttons: [
+					{
+						text: 'Create Order',
+						className:'btn btn-sm btn-success',
+						action: function ( e, dt, node, config ) {
+							window.location.replace("{{route('order.create')}}");
+						}
+					}
+				]
 			});
 
-			$('.note-warning').fadeOut(6000)
+			$('.note-warning').fadeOut(9000)
 		});
 	</script>
 @endpush

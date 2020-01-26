@@ -135,16 +135,14 @@
 
 		
 		<li class="dropdown navbar-user">
-			@if(!$guest)
+			@if(ci()->session->userdata('user'))
 				<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
 					<img src="{{base_url('assets/img/user/user2.png')}}" alt="" />
-					<span class="d-none d-md-inline">{{ci()->simple_auth->user()->first_name}}</span> <b class="caret"></b>
+					<span class="d-none d-md-inline">{{ci()->session->userdata('user')['first_name']}}</span> <b class="caret"></b>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">
-					<a href="javascript:;" class="dropdown-item">Edit Profile</a>
-					<a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a>
-					<a href="javascript:;" class="dropdown-item">Calendar</a>
-					<a href="javascript:;" class="dropdown-item">Setting</a>
+					<a href="{{route('user.index')}}" class="dropdown-item">Edit Profile</a>
+					<a href="{{route('user.index')}}" class="dropdown-item">Setting</a>
 					<div class="dropdown-divider"></div>
 					<a href="{{route('logout')}}" class="dropdown-item">Log Out</a>
 				</div>

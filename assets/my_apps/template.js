@@ -50,7 +50,7 @@ let templates = {
     takeOrderTable: function(i) {
         return `
                 <div class="table-responsive">
-                    <table class="table m-b-0" id="tbl-order">
+                    <table class="table table-bordered table-hover" id="tbl-order">
                         <thead>
                             <tr>
                                 <th>Invoice</th>
@@ -66,7 +66,7 @@ let templates = {
                                     <td>${item.delivery_name}</td>
                                     <td>${item.delivery_street_address}</td>
                                     <td><a href="take_order/${item.id}" class="btn btn-link btn-sm">Detail</a></td>
-                                    <td><button value="${item.id}" class="btn btn-success btn-sm add-order">Delivery Order</button></td>
+                                    <td><button value="${item.id}" class="btn btn-success btn-sm delivery-order">Delivery Order</button></td>
                                 </tr>`.trim()).join(" ")}
                                 
                         </tbody>

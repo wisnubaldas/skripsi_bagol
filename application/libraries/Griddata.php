@@ -11,7 +11,7 @@ class Griddata
     protected $config;
     protected $field = false;
     protected $kolom;
-    protected $where = [];
+    protected $where;
     protected $qq = false;
     protected $dt;
     public function __construct()
@@ -26,13 +26,32 @@ class Griddata
                 'database' => env('DB_DATABASE') ];
         $this->dt = new Datatables( new MySQL($config) );
     }
-public function parsing($q)
-{
-	$q;
-    $query = DB::getQueryLog(); // Show results of log
-    return $this->dt->query($query[0]['query']);
-}
 
+    public function parsing($q)
+    {
+       
+        $q;
+        $query = DB::getQueryLog(); // Show results of log
+        return $this->dt->query($query[0]['query']);
+    }
+    public function generate(string $q)
+    {
+        if($this->where)
+        {
+           $q = $q.$this->where;
+        }
+        return $this->dt->query($q);
+    }
+    public function where(array $where)
+    {
+        if(count($where) != 3)
+        {
+            show_error('where harus tiga array = ["filed","operator","param"] tidak boleh lebih atau kurang');
+        }
+
+        $this->where = ' where `'.$where[0].'` '.$where[1].' \''.$where[2].'\'';
+        return $this;
+    }
 }
 
 

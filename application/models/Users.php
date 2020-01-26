@@ -21,7 +21,15 @@ class Users extends Model {
     public function __construct()
     {
         parent::__construct();
-        
+        $fillable = ['first_name',
+                        'last_name',
+                        'username',
+                        'gender',
+                        'email',
+                        'password',
+                        'role',
+                        'active',
+                        'verified'];
     }
 }
 

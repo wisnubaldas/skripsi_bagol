@@ -72,11 +72,18 @@
 @endsection
 
 @push('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 <link href="{{base_url('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css')}}" rel="stylesheet" />
 <link href="{{base_url('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css')}}" rel="stylesheet" />
+<link href="{{base_url('/assets/plugins/datatables/css/dataTables.bootstrap4.css')}}" rel="stylesheet" />
+<link href="{{base_url('/assets/plugins/datatables/css/buttons/buttons.bootstrap4.min.css')}}" rel="stylesheet" />
 @endpush
 
 @push('scripts')
+<script src="{{base_url('/assets/plugins/datatables/js/jquery.dataTables.js')}}"></script>
+<script src="{{base_url('/assets/plugins/datatables/js/dataTables.bootstrap4.js')}}"></script>
+<script src="{{base_url('/assets/plugins/datatables/js/buttons/dataTables.buttons.min.js')}}"></script>
+<script src="{{base_url('/assets/plugins/datatables/js/buttons/buttons.bootstrap4.min.js')}}"></script>
 <script src="{{base_url('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
 <script>
 	const invoice = @json($invoice);
@@ -94,13 +101,21 @@
 						.then(function (response) {
 							// handle success
 							$('.panel-footer').html(templates.takeOrderTable(response.data))
-
-							$('.add-order').click(function(a){
-								$('.tr-'+$(this).val())
-										// .remove()
-										.addClass('bg-red-darker text-white f-w-500')
-										.find('a, button')
-										.addClass('disabled')
+							
+							$('.delivery-order').click(function(a){
+								
+								axios.get("{{route('order.delivery')}}"+'?'+'id='+$(this).val())
+										.then(function(a) {
+											console.log(a.data.id)
+											$('.tr-'+a.data.id)
+													.remove()
+													// .addClass('bg-red-darker text-white f-w-500')
+													// .find('a, button')
+													// .addClass('disabled')
+										})
+										.catch(function (a) {
+											console.log(a)
+										})
 							})	
 						})
 						.catch(function (error) {
@@ -108,7 +123,7 @@
 							console.log(error);
 						})
 						.finally(function () {
-							// always executed
+							// $('.table').DataTable();
 					});
 
 				// $('.alert').html(templates.alertError({title:'awas anjing gila',message:'dasadasdasdasdasdasd'}))
