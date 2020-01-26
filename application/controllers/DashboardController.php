@@ -15,7 +15,7 @@ class DashboardController extends CI_Controller {
 
 	public function index()
 	{
-		$lat_long = $this->Orders->select(['latitude','longitude','status'])
+		$lat_long = $this->Orders->select(['id','latitude','longitude','status'])
 									->whereIn('status',['delivery','pickup'])
 									->get();
 		// dd($lat_long->toArray());
@@ -31,7 +31,8 @@ class DashboardController extends CI_Controller {
 					$this->googlemaps->add_marker(
 						[
 							'position' => $v->latitude.', '.$v->longitude,
-							'icon' => 'http://maps.google.com/mapfiles/kml/pal4/icon7.png'
+							'icon' => 'http://maps.google.com/mapfiles/kml/pal4/icon7.png',
+							'onclick'=>'$("#map-modal").modal(); ShowPickupBaloon("'.$v->id.'")'
 						]
 					);
 					break;
@@ -40,7 +41,7 @@ class DashboardController extends CI_Controller {
 							[
 								'position' => $v->latitude.', '.$v->longitude,
 								'icon' => 'http://maps.google.com/mapfiles/kml/pal4/icon54.png',
-								'onclick'=>'ShowPickupBaloon("'.$v->id.'")'
+								'onclick'=>'$("#map-modal").modal(); ShowPickupBaloon("'.$v->id.'")'
 							]
 						);
 					break;

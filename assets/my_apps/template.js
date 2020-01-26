@@ -1,3 +1,4 @@
+
 let templates = {
     table: function (h) {
         return `

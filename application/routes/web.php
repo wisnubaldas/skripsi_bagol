@@ -52,6 +52,7 @@ Route::group('master',['namespace' => 'master','middleware' => ['UserMiddleware'
 		Route::get(hash("sha256", 'datatables'),'OrderController@grid')->name('order.grid');
 		Route::get('order/edit/{id}','OrderController@edit')->name('order.edit');
 		Route::post('order/update/{id}','OrderController@update')->name('order.update');
+		Route::get('order/show/{id}','OrderController@show')->name('order.show');
 
 	});
 });

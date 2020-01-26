@@ -79,6 +79,13 @@ class OrderController extends CI_Controller {
         
     }
 
+    public function show($id)
+    {
+        $or = Orders::find($id)->first();
+        $this->output
+        ->set_content_type('application/json')
+        ->set_output($or);
+    }
     protected function validation()
     {
       $config = array(
