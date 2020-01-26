@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="note note-secondary note-purple m-b-15">
-				<h4><b><img src="http://maps.google.com/mapfiles/kml/pal4/icon7.png" alt="delivery"></b> Green car icon indicate to Pickup</h4>
+				<h4><b><img src="http://maps.google.com/mapfiles/kml/pal4/icon7.png" alt="delivery"></b> Green car icon indicate to Delivery</h4>
 			</div>
 		</div>
 		<div class="col-md-6">
