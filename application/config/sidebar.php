@@ -19,10 +19,6 @@ $config['sidebar'] = [
 				'title' => 'Courier'
 			],
 			[
-				'url' => route('product'),
-				'title' => 'Produk'
-			],
-			[
 				'url' => route('order'),
 				'title' => 'Order'
 			],

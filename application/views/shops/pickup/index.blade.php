@@ -81,9 +81,10 @@
 function updateStatusOrder(id) {
 	axios.put("{{base_url('transaction/pickup/')}}"+id)
 			.then(function(r) {
-				console.log(r)
+				location.reload();
 			})
 			.catch(function(e){
+				alert('error data')
 				console.log(e)
 			})
 }
