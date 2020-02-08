@@ -8,6 +8,7 @@ class CourierController extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Couriers');
+		$this->load->model('Users');
 		$this->load->library('user_agent');
 	}
 
@@ -20,7 +21,8 @@ class CourierController extends CI_Controller {
 	{
 		if ($this->input->server('REQUEST_METHOD') == 'GET'){
 			$formInput = $this->Couriers->kolom;
-			return $this->blade_view->render('master.courier.create',compact('formInput'));
+			$user = $this->Users->all()->toArray();
+			return $this->blade_view->render('master.courier.create',compact('formInput','user'));
 		}
 		else if ($this->input->server('REQUEST_METHOD') == 'POST'){
 			$id = $this->Couriers->insert($this->input->post());

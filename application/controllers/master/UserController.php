@@ -16,6 +16,7 @@ class UserController extends CI_Controller {
     {
 		return $this->blade_view->render('master.user.index');
     }
+   
     public function create()
     {
         return $this->blade_view->render('master.user.create');

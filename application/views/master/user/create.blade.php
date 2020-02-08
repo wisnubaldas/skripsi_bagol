@@ -62,9 +62,9 @@ if(ci()->session->flashdata('msg')){
 							<label class="col-md-4 col-sm-4 col-form-label">Roles</label>
 							<div class="col-md-8 col-sm-8">
 								<select class="form-control" id="role" name="role" data-parsley-required="true">
-									<option value="operator">Opertor</option>
-									<option value="driver">Driver</option>
-									<option value="staff">Staff</option>
+									<option value="operator">Courier</option>
+									<option value="admin">Admin</option>
+									<option value="direktur">Direktur</option>
 								</select>
 							</div>
                         </div>

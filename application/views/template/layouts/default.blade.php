@@ -32,9 +32,9 @@
 		@include('template.includes.header')
 		
 		{{-- @includeWhen($topMenu, 'includes.top-menu') --}}
-		
-		@includeWhen(!$sidebarHide, 'template.includes.sidebar')
-		
+			@if(!isset($ok))
+				@includeWhen(!$sidebarHide, 'template.includes.sidebar')
+			@endif
 		{{-- @includeWhen($sidebarTwo, 'includes.sidebar-right') --}}
 		
 		<div id="content" class="content {{ $contentClass }}">

@@ -18,10 +18,7 @@ $config['sidebar'] = [
 				'url' => route('master.courier'),
 				'title' => 'Courier'
 			],
-			[
-				'url' => route('order'),
-				'title' => 'Order'
-			],
+			
 			[
 				'url' => route('user.index'),
 				'title' => 'User'
@@ -33,6 +30,10 @@ $config['sidebar'] = [
 			'url' => 'javascript:;',
 			'caret' => true,
 			'sub_menu' => [
+								[
+									'url' => route('order'),
+									'title' => 'Order'
+								],
 								[
 									'url' => route('pickup.index'),
 									'title' => 'Pickup'

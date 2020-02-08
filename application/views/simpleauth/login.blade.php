@@ -15,6 +15,8 @@
 		<!-- begin brand -->
 		<div class="login-header">
 			<div class="brand">
+			<span><a href="{{route('map')}}">Dasboard Map</a> </span>
+			<br />
 			<span class="logo"></span> <b>{{env('APP_NAME')}}</b>
 			<small class="f-w-700">{{env('APP_COMPANY')}}</small>
 			</div>
@@ -29,6 +31,7 @@
 			    {{$messages['danger']}}
 			@endcomponent
 		@endisset
+
 		<div class="login-content">
 			<form method="POST" class="margin-bottom-0">
 				@php
@@ -47,20 +50,11 @@
 				<div class="form-group m-b-20">
 					<input type="password" class="form-control form-control-lg" placeholder="Password" name="{{config_item('auth_form_password_field')}}" required />
 				</div>
-				@if(config_item('simpleauth_enable_remember_me') == true)
-				<div class="checkbox checkbox-css m-b-20">
-					<input type="checkbox" id="remember_checkbox" name="{{config_item('simpleauth_remember_me_field')}}" /> 
-					<label for="remember_checkbox">
-						Remember Me
-					</label>
-				</div>
-				@endif
+				
 				<div class="login-buttons">
 					<button type="submit" class="btn btn-success btn-block btn-lg">Login,</button>
 				</div>
-				<div class="m-t-20">
-					Not a member yet? Click <a href="javascript:;">here</a> to register.
-				</div>
+				
 			</form>
 		</div>
 		<!-- end login-content -->

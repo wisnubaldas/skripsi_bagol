@@ -20,7 +20,7 @@ class CustomerController extends CI_Controller {
 	{
 		if ($this->input->server('REQUEST_METHOD') == 'GET'){
 			$formInput = [
-				'gender', 'firstname', 'lastname', 'dob', 'email_address', 'default_address', 'telephone', 'fax', 'newsletter', 'credits',
+				 'firstname', 'lastname', 'email_address', 'default_address', 'telephone', 'fax',
 			];
 			return $this->blade_view->render('master.customer.create',compact('formInput'));
 		}

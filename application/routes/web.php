@@ -12,6 +12,7 @@ Route::get('/', function(){
 });
 
 	// authentication manual
+	Route::get('map', 'SimpleAuthController@map')->name('map');
 	Route::match(['get', 'post'], 'login', 'SimpleAuthController@login',['middleware' => ['MyAuthMiddlewareMiddleware']])->name('login');
 	Route::get('logout', 'SimpleAuthController@logout')->name('logout');
 	Route::match(['get', 'post'], 'signup', 'SimpleAuthController@signup')->name('signup');
